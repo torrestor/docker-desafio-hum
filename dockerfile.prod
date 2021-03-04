@@ -1,0 +1,16 @@
+FROM golang
+
+COPY ./app .
+
+RUN go build desafio-hum.go
+FROM scratch
+
+COPY --from=0 /go/desafio-hum .
+
+CMD ["./desafio-hum"]
+
+
+
+
+#docker build -t torresjovem/app-golang:prod . -f dockerfile.prod
+#docker run -it torresjovem/app-golang:prod
